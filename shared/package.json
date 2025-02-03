@@ -1,0 +1,10 @@
+{
+  "name": "@art-gallery/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./build/index.js",
+  "scripts": {
+    "lint": "eslint ./src",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}

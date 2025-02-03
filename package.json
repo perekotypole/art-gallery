@@ -1,0 +1,41 @@
+{
+  "name": "art-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perekotypole/art-gallery.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "engines": {
+    "node": ">=20.x.x",
+    "npm": ">=10.x.x"
+  },
+  "workspaces": [
+    "apps/server",
+    "apps/client",
+    "shared"
+  ],
+  "scripts": {
+    "_prettier": "prettier \"**/*.{js,ts,tsx,json,md,css,html}\"",
+    "format": "npm run _prettier -- --write",
+    "lint:client": "npm run lint -w apps/client",
+    "lint:server": "npm run lint -w apps/server",
+    "lint:shared": "npm run lint -w shared",
+    "lint": "npm run lint --workspaces",
+    "build:shared": "npm run build -w shared"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0"
+  }
+}
