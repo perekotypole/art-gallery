@@ -1,4 +1,5 @@
 import { Router, type Request, type Response } from "express";
+import { type Schema as ValidationSchema } from "zod";
 
 import { logger, LoggerEntity } from "~/libs/logger/logger.js";
 
@@ -17,12 +18,23 @@ class BaseController {
     this.router = Router();
   }
 
+  private validateData = (schema: ValidationSchema, data: unknown) => {
+    schema.parse(data);
+  }
+
   protected addRoute(options: ControllerRouteParameters): void {
-    const { handler, method, path } = options;
+    const { handler, method, path, validation } = options;
     const fullPath = this.apiUrl + path;
 
     const routeHandler = async (req: Request, res: Response): Promise<void> => {
       try {
+        if (validation?.body) {
+          this.validateData(validation.body, req.body)
+        }
+        if (validation?.query) {
+          this.validateData(validation.query, req.query)
+        }
+
         const handlerOptions: APIHandlerOptions = {
           body: req.body,
           params: req.params,

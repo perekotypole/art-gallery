@@ -1,3 +1,5 @@
+import { type Schema as ValidationSchema } from "zod";
+
 type APIHandlerResponse = {
   payload: unknown;
   status: number;
@@ -25,6 +27,10 @@ type ControllerRouteParameters = {
   ) => APIHandlerResponse | Promise<APIHandlerResponse>;
   method: "POST" | "GET" | "DELETE" | "PUT";
   path: string;
+  validation?: {
+		body?: ValidationSchema;
+		query?: ValidationSchema;
+	};
 };
 
 export type {

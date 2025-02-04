@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "main": "./build/index.js",
+  "types": "./build/index.d.ts",
   "scripts": {
     "lint": "eslint ./src",
     "build": "tsc -p tsconfig.build.json"

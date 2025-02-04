@@ -7,6 +7,8 @@ import { database } from "~/libs/database/database.js";
 import { APIPath } from "~/libs/enums/enums.js";
 
 import { ArtworkEntity } from "./artwork.entity.js";
+import type { ArtworkCreateRequest } from "./libs/types/types.js";
+import { artworkCreateValidationSchema } from "./libs/validation-schemas/validation-schemas.js";
 
 class ArtworkController extends BaseController {
   private repository = database.getRepository(ArtworkEntity);
@@ -21,24 +23,22 @@ class ArtworkController extends BaseController {
     });
 
     this.addRoute({
-      handler: (options) => this.create(
-        options as APIHandlerOptions<{
-          body: {
-            title: string,
-            artist: string,
-            type: string,
-            price: number,
-            availability?: boolean,
-          };
-        }>,
-      ),
+      handler: (options) =>
+        this.create(
+          options as APIHandlerOptions<{
+            body: ArtworkCreateRequest;
+          }>,
+        ),
       method: "POST",
       path: "/",
+      validation: {
+				body: artworkCreateValidationSchema,
+			},
     });
   }
 
   private async findAll(): Promise<APIHandlerResponse> {
-    const list = await this.repository.find()
+    const list = await this.repository.find();
 
     return {
       payload: list,
@@ -48,17 +48,12 @@ class ArtworkController extends BaseController {
 
   private async create(
     options: APIHandlerOptions<{
-      body: {
-        title: string,
-        artist: string,
-        type: string,
-        price: number,
-        availability?: boolean
-      };
-    }>
+      body: ArtworkCreateRequest;
+    }>,
   ): Promise<APIHandlerResponse> {
-    const newArtwork = await this.repository.create(options.body)
-    const result = await this.repository.save(newArtwork)
+
+    const newArtwork = this.repository.create(options.body);
+    const result = await this.repository.save(newArtwork);
 
     return {
       payload: result,

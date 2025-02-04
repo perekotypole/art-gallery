@@ -11,13 +11,13 @@ class ArtworkEntity {
   @PrimaryGeneratedColumn("uuid")
   public id!: string;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar", length: 99 })
   public title!: string;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar", length: 50 })
   public artist!: string;
 
-  @Column({ type: "varchar", length: 100 })
+  @Column({ type: "varchar", length: 50 })
   public type!: string;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
