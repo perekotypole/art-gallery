@@ -3,7 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-const COUNT_DEFAULT = 0
+const COUNT_DEFAULT = 0;
 
 const App: React.FC = () => {
   const [count, setCount] = useState(COUNT_DEFAULT);
@@ -20,9 +20,11 @@ const App: React.FC = () => {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-      <button onClick={() => {
-        setCount((count): number => count + 1);
-      }}>
+        <button
+          onClick={() => {
+            setCount((count): number => count + 1);
+          }}
+        >
           count is {count}
         </button>
         <p>
@@ -34,6 +36,6 @@ const App: React.FC = () => {
       </p>
     </>
   );
-}
+};
 
 export default App;

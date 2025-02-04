@@ -25,11 +25,13 @@
     "lint:server": "npm run lint -w apps/server",
     "lint:shared": "npm run lint -w shared",
     "lint": "npm run lint --workspaces",
-    "build:shared": "npm run build -w shared"
+    "build:shared": "npm run build -w shared",
+    "dev:server": "npm run start:dev -w apps/server"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@types/eslint": "^9.6.1",
+    "@types/node": "^22.13.0",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "eslint": "^9.19.0",
@@ -37,5 +39,8 @@
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
   }
 }
