@@ -25,7 +25,8 @@
     "lint:server": "npm run lint -w apps/server",
     "lint:shared": "npm run lint -w shared",
     "lint": "npm run lint --workspaces",
-    "build:shared": "npm run build -w shared"
+    "build:shared": "npm run build -w shared",
+    "dev:server": "npm run start:dev -w apps/server"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
