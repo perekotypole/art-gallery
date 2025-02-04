@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 
-import { database } from "./libs/database/database.js";
-import { logger, LoggerEntity } from "./libs/logger/logger.js";
-import { artworksController } from "./modules/modules.js";
+import { database } from "~/libs/database/database.js";
+import { logger, LoggerEntity } from "~/libs/logger/logger.js";
+import { artworksController } from "~/modules/modules.js";
 
 dotenv.config();
 
@@ -21,6 +21,8 @@ try {
 
 const app = express();
 const port = process.env.PORT;
+
+app.use(express.json());
 
 app.get("/", (_req, res) => {
   res.json({

@@ -1,1 +1,1 @@
-export * from "./art-work.entity.js";
+export { ArtworkEntity } from "~/modules/artworks/artwork.entity.js";

@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 
 @Entity()
-class Artwork {
+class ArtworkEntity {
   @PrimaryGeneratedColumn("uuid")
   public id!: string;
 
@@ -33,4 +33,4 @@ class Artwork {
   public updated_at!: Date;
 }
 
-export { Artwork };
+export { ArtworkEntity };

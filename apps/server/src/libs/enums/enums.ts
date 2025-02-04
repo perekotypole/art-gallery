@@ -1,5 +1,5 @@
 const APIPath = {
-  ARTWORKS: "artworks",
+  ARTWORKS: "/artworks",
 } as const;
 
 export { APIPath };

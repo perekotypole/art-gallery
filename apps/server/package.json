@@ -4,14 +4,14 @@
   "type": "module",
   "scripts": {
     "lint": "eslint ./src",
-    "start:dev": "tsx watch src/index.ts",
+    "start:dev": "nodemon --exec tsx src/index.ts",
     "start": "node ./src/index.js",
     "typeorm": "typeorm-ts-node-esm"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.19.2"
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
