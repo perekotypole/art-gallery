@@ -3,27 +3,32 @@ import dotenv from "dotenv";
 
 import { database } from "./libs/database/database.js";
 import { logger, LoggerEntity } from "./libs/logger/logger.js";
+import { artworksController } from "./modules/modules.js";
 
 dotenv.config();
 
-database
-  .initialize()
-  .then(() => {
-    logger.info(LoggerEntity.DATABASE, "Data Source has been initialized!");
-  })
-  .catch((err: unknown) => {
-    logger.error(
-      LoggerEntity.DATABASE,
-      `Error during Data Source initialization: ${err as Error}`,
-    );
-  });
+try {
+  await database.initialize();
+  logger.info(LoggerEntity.DATABASE, "Data Source has been initialized!");
+} catch (error) {
+  logger.error(
+    LoggerEntity.DATABASE,
+    `Error during Data Source initialization: ${error as Error}`,
+  );
+
+  process.exit();
+}
 
 const app = express();
 const port = process.env.PORT;
 
 app.get("/", (_req, res) => {
-  res.send("Hello World!");
+  res.json({
+    status: "alive",
+  });
 });
+
+app.use(artworksController);
 
 app.listen(port, (error) => {
   if (!error) {

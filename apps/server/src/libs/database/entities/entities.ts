@@ -1,1 +1,1 @@
-export * from './art-work.entity.js'
+export * from "./art-work.entity.js";

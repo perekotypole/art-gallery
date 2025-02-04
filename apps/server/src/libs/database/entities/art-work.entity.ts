@@ -1,30 +1,36 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity()
 class Artwork {
   @PrimaryGeneratedColumn("uuid")
-  id!: string;  
+  public id!: string;
 
   @Column({ type: "varchar", length: 255 })
-  title!: string;
+  public title!: string;
 
   @Column({ type: "varchar", length: 255 })
-  artist!: string;
+  public artist!: string;
 
   @Column({ type: "varchar", length: 100 })
-  type!: string;
+  public type!: string;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
-  price!: number;
+  public price!: number;
 
   @Column({ type: "boolean", default: true })
-  availability!: boolean;
+  public availability!: boolean;
 
   @CreateDateColumn({ type: "timestamp" })
-  created_at!: Date;
+  public created_at!: Date;
 
   @UpdateDateColumn({ type: "timestamp" })
-  updated_at!: Date;
+  public updated_at!: Date;
 }
 
-export { Artwork }
+export { Artwork };
