@@ -1,3 +1,4 @@
+import { ARTWORK_TYPES } from "@art-gallery/shared";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -17,14 +18,17 @@ class ArtworkEntity {
   @Column({ type: "varchar", length: 50 })
   public artist!: string;
 
-  @Column({ type: "varchar", length: 50 })
+  @Column({
+    type: "enum",
+    enum: ARTWORK_TYPES,
+  })
   public type!: string;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   public price!: number;
 
-  @Column({ type: "boolean", default: true })
-  public availability!: boolean;
+  @Column({ type: "boolean", default: false })
+  public availability?: boolean;
 
   @CreateDateColumn({ type: "timestamp" })
   public created_at!: Date;

@@ -28,9 +28,9 @@ type ControllerRouteParameters = {
   method: "POST" | "GET" | "DELETE" | "PUT";
   path: string;
   validation?: {
-		body?: ValidationSchema;
-		query?: ValidationSchema;
-	};
+    body?: ValidationSchema;
+    query?: ValidationSchema;
+  };
 };
 
 export type {

@@ -1,5 +1,5 @@
 import {
-  APIHandlerOptions,
+  type APIHandlerOptions,
   type APIHandlerResponse,
   BaseController,
 } from "~/libs/controller/controller.js";
@@ -32,8 +32,8 @@ class ArtworkController extends BaseController {
       method: "POST",
       path: "/",
       validation: {
-				body: artworkCreateValidationSchema,
-			},
+        body: artworkCreateValidationSchema,
+      },
     });
   }
 
@@ -51,12 +51,16 @@ class ArtworkController extends BaseController {
       body: ArtworkCreateRequest;
     }>,
   ): Promise<APIHandlerResponse> {
+    const { body } = options;
 
-    const newArtwork = this.repository.create(options.body);
-    const result = await this.repository.save(newArtwork);
+    const entity = this.repository.create({
+      ...body,
+      availability: body.availability ?? false,
+    });
+    const newArtwork = await this.repository.save(entity);
 
     return {
-      payload: result,
+      payload: newArtwork,
       status: 200,
     };
   }
