@@ -1,4 +1,5 @@
-import { Button, Input } from "~/libs/components/components.js";
+import { Button, Input, Select } from "~/libs/components/components.js";
+import { ArtworkType, ARTWORK_TYPES } from "~/modules/artwork/artwork.js";
 
 import { ArtworkCard } from "./libs/components/components.js";
 import { useArtworkPage } from "./artworks-page.hook.js";
@@ -29,7 +30,7 @@ const ArtworksPage: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles["filter-form"]}>
+      <form className={styles["filter-form"]}>
         <div className={styles["search-wrapper"]}>
           <Input
             name="search"
@@ -49,7 +50,29 @@ const ArtworksPage: React.FC = () => {
             placeholder="Artist search..."
           />
         </div>
-      </div>
+
+        <Select
+          name="type"
+          control={control}
+          label="Artwork type"
+          placeholder="Artwork type"
+          options={ARTWORK_TYPES.map((type) => ({
+            value: type,
+            label: ArtworkType[type],
+          }))}
+        />
+
+        <Select
+          name="price"
+          control={control}
+          label="Sort by price"
+          placeholder="Sort"
+          options={[
+            { value: 'asc', label: 'Lowest prices' },
+            { value: 'desc', label: 'Highest prices' },
+          ]}
+        />
+      </form>
 
       <div className={styles["artworks-list"]}>
         {artworks.map((artwork) => (

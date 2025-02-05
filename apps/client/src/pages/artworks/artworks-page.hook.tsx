@@ -3,8 +3,8 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { type Control, type FieldErrors, useForm } from "react-hook-form";
 
 import {
+  ARTWORK_TYPES,
   type ArtworkFindAllResponse,
-  type ARTWORK_TYPES,
 } from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
 
@@ -22,7 +22,7 @@ const mockArtworks: ArtworkFindAllResponse = [
 
 type FormData = {
   search: string;
-  artist: string | null;
+  artist: string;
   type: (typeof ARTWORK_TYPES)[number] | null;
   price: null | "desc" | "asc";
 };
@@ -77,35 +77,14 @@ const useArtworkPage = (): ReturnData => {
   } = useForm<FormData>({
     defaultValues: {
       search: "",
-      artist: null,
+      artist: "",
       type: null,
       price: null,
     },
     mode: "onChange",
   });
-
-  const [debouncedValues, setDebouncedValues] = useState<FormData>({
-    search: "",
-    artist: null,
-    type: null,
-    price: null,
-  });
-
   const formValues = watch();
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValues(formValues);
-    }, 500);
-
-    return (): void => {
-      clearTimeout(handler);
-    };
-  }, [formValues]);
-
-  useEffect(() => {
-    console.log(debouncedValues);
-  }, [debouncedValues]);
+  console.log(formValues);
 
   return {
     artworks: mockArtworks,

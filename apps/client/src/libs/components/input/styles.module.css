@@ -19,12 +19,12 @@
   align-items: center;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .input-field {
   width: 100%;
-  padding: 8px 12px;
+  padding: 6px 12px;
   font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 400;
@@ -32,7 +32,7 @@
   color: inherit;
   text-overflow: clip;
   background-color: var(--color-second-light);
-  border: 1px solid #0000001a;
+  border: 1px solid hsl(0, 0%, 80%);
   border-radius: inherit;
   transition: all 0.3s ease;
 }
