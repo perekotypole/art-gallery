@@ -1,1 +1,4 @@
-export { artworkCreateValidationSchema } from "@art-gallery/shared";
+export {
+  artworkCreateValidationSchema,
+  artworkUpdateValidationSchema,
+} from "@art-gallery/shared";

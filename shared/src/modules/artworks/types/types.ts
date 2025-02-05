@@ -8,6 +8,14 @@ type ArtworkCreateRequest = {
   availability?: boolean | undefined;
 };
 
+type ArtworkUpdateRequest = {
+  title: string;
+  artist: string;
+  type: (typeof ARTWORK_TYPES)[number];
+  price: number;
+  availability?: boolean | undefined;
+};
+
 type ArtworkFindAllRequest = {
   price?: "asc" | "desc";
   title?: string;
@@ -15,4 +23,8 @@ type ArtworkFindAllRequest = {
   type?: (typeof ARTWORK_TYPES)[number];
 };
 
-export type { ArtworkCreateRequest, ArtworkFindAllRequest };
+export type {
+  ArtworkCreateRequest,
+  ArtworkUpdateRequest,
+  ArtworkFindAllRequest,
+};

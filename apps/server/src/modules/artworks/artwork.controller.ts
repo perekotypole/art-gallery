@@ -12,8 +12,12 @@ import { ArtworkEntity } from "./artwork.entity.js";
 import type {
   ArtworkCreateRequest,
   ArtworkFindAllRequest,
+  ArtworkUpdateRequest,
 } from "./libs/types/types.js";
-import { artworkCreateValidationSchema } from "./libs/validation-schemas/validation-schemas.js";
+import {
+  artworkCreateValidationSchema,
+  artworkUpdateValidationSchema,
+} from "./libs/validation-schemas/validation-schemas.js";
 
 class ArtworkController extends BaseController {
   private repository = database.getRepository(ArtworkEntity);
@@ -71,6 +75,23 @@ class ArtworkController extends BaseController {
       method: "DELETE",
       path: "/:id",
     });
+
+    this.addRoute({
+      handler: (options) =>
+        this.update(
+          options as APIHandlerOptions<{
+            params: {
+              id: string;
+            };
+            body: ArtworkUpdateRequest;
+          }>,
+        ),
+      method: "PUT",
+      path: "/:id",
+      validation: {
+        body: artworkUpdateValidationSchema,
+      },
+    });
   }
 
   private async find(
@@ -83,6 +104,13 @@ class ArtworkController extends BaseController {
     const entity = await this.repository.findOneBy({
       id: options.params.id,
     });
+
+    if (entity === null) {
+      return {
+        payload: null,
+        status: 404,
+      };
+    }
 
     return {
       payload: entity,
@@ -173,6 +201,37 @@ class ArtworkController extends BaseController {
 
     return {
       payload: entity,
+      status: 200,
+    };
+  }
+
+  private async update(
+    options: APIHandlerOptions<{
+      params: {
+        id: string;
+      };
+      body: ArtworkUpdateRequest;
+    }>,
+  ): Promise<APIHandlerResponse> {
+    const entity = await this.repository.findOneBy({
+      id: options.params.id,
+    });
+
+    if (entity === null) {
+      return {
+        payload: null,
+        status: 404,
+      };
+    }
+
+    const result = await this.repository.save(
+      Object.assign(new ArtworkEntity(), entity, options.body, {
+        availability: options.body.availability ?? entity.availability ?? false,
+      }),
+    );
+
+    return {
+      payload: result,
       status: 200,
     };
   }
