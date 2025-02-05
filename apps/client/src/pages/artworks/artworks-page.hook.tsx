@@ -35,11 +35,13 @@ const useArtworkPage = (): ReturnData => {
     void navigate("/new");
   }, [navigate]);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (newArtworkMatch) {
       onOpenModal(<CreateArtwork />, "/");
     }
-  }, [newArtworkMatch, navigate, onOpenModal]);
+  }, [newArtworkMatch]);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   return {
     artworks: mockingArtworks,
