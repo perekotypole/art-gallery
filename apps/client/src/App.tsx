@@ -1,12 +1,15 @@
 import { RootLayout } from "~/libs/layouts/layouts.js";
-
 import { ArtworksPage } from "~/pages/artworks/artworks.js";
+
+import { ModalProvider } from "./libs/contexts/modal/modal.js";
 
 const App: React.FC = () => {
   return (
-    <RootLayout>
-      <ArtworksPage />
-    </RootLayout>
+    <ModalProvider>
+      <RootLayout>
+        <ArtworksPage />
+      </RootLayout>
+    </ModalProvider>
   );
 };
 

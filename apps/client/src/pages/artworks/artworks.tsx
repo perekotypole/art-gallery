@@ -1,5 +1,6 @@
 import { type ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
 import { Button } from "~/libs/components/components.js";
+import { useModal } from "~/libs/contexts/modal/modal.js";
 
 import { ArtworkCard } from "./libs/components/components.js";
 
@@ -19,13 +20,20 @@ const mockingArtworks: ArtworkFindAllResponse = [
 ];
 
 const ArtworksPage: React.FC = () => {
+  const { onOpenModal } = useModal();
+
   return (
     <>
       <div className={styles["top"]}>
         <h1 className={styles["title"]}>Explore Our Collection</h1>
 
         <div className={styles["button-wrapper"]}>
-          <Button label="Add New Artwork" />
+          <Button
+            label="Add New Artwork"
+            onClick={() => {
+              onOpenModal(<>Create new artwork</>);
+            }}
+          />
         </div>
       </div>
 
