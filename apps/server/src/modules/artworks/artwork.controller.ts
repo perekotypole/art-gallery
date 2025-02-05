@@ -23,6 +23,19 @@ class ArtworkController extends BaseController {
 
     this.addRoute({
       handler: (options) =>
+        this.find(
+          options as APIHandlerOptions<{
+            params: {
+              id: string;
+            };
+          }>,
+        ),
+      method: "GET",
+      path: "/:id",
+    });
+
+    this.addRoute({
+      handler: (options) =>
         this.findAll(
           options as APIHandlerOptions<{
             query: ArtworkFindAllRequest;
@@ -45,6 +58,23 @@ class ArtworkController extends BaseController {
         body: artworkCreateValidationSchema,
       },
     });
+  }
+
+  private async find(
+    options: APIHandlerOptions<{
+      params: {
+        id: string;
+      };
+    }>,
+  ): Promise<APIHandlerResponse> {
+    const entity = await this.repository.findOneBy({
+      id: options.params.id,
+    });
+
+    return {
+      payload: entity,
+      status: 200,
+    };
   }
 
   private async findAll(
