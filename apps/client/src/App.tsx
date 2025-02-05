@@ -1,15 +1,30 @@
 import { RootLayout } from "~/libs/layouts/layouts.js";
-import { ArtworksPage } from "~/pages/artworks/artworks.js";
+import { ModalProvider } from "~/libs/contexts/modal/modal.js";
+import { RouterProvider } from "~/libs/components/components.js";
 
-import { ModalProvider } from "./libs/contexts/modal/modal.js";
+import { ArtworksPage } from "~/pages/artworks/artworks.js";
 
 const App: React.FC = () => {
   return (
-    <ModalProvider>
-      <RootLayout>
-        <ArtworksPage />
-      </RootLayout>
-    </ModalProvider>
+    <RouterProvider
+      routes={[
+        {
+          children: [
+            {
+              element: (
+                <ModalProvider>
+                  <RootLayout>
+                    <ArtworksPage />
+                  </RootLayout>
+                </ModalProvider>
+              ),
+              path: "/",
+              children: [{ path: "/new" }, { path: "/detaild" }],
+            },
+          ],
+        },
+      ]}
+    />
   );
 };
 
