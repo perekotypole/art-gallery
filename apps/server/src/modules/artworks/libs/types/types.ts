@@ -1,1 +1,4 @@
-export { type ArtworkCreateRequest } from "@art-gallery/shared";
+export type {
+  ArtworkCreateRequest,
+  ArtworkFindAllRequest,
+} from "@art-gallery/shared";
