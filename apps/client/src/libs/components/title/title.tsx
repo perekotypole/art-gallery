@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import Logo from "~/assets/logo.svg?react";
+import Logo from "~/assets/icons/logo.svg?react";
 
 import styles from "./styles.module.css";
 

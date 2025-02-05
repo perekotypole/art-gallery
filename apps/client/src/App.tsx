@@ -1,13 +1,7 @@
-import { Header } from "~/libs/components/components.js";
-
-import "./App.css";
+import { RootLayout } from "./libs/layouts/layouts.js";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <RootLayout></RootLayout>;
 };
 
 export default App;
