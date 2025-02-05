@@ -1,7 +1,13 @@
-import { RootLayout } from "./libs/layouts/layouts.js";
+import { RootLayout } from "~/libs/layouts/layouts.js";
+
+import { ArtworksPage } from "~/pages/artworks/artworks.js";
 
 const App: React.FC = () => {
-  return <RootLayout></RootLayout>;
+  return (
+    <RootLayout>
+      <ArtworksPage />
+    </RootLayout>
+  );
 };
 
 export default App;

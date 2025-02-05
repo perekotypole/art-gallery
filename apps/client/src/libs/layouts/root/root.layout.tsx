@@ -7,7 +7,9 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     <div className={styles["page"]}>
       <Header />
 
-      <main className={styles["content-wrapper"]}>{children}</main>
+      <main className={styles["content-wrapper"]}>
+        <div className="main-container">{children}</div>
+      </main>
 
       <Footer />
     </div>

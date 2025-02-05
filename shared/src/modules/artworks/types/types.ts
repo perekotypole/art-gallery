@@ -4,7 +4,7 @@ type ArtworkFindResponse = {
   id: string;
   title: string;
   artist: string;
-  type: string;
+  type: (typeof ARTWORK_TYPES)[number];
   price: number;
   availability: boolean;
   created_at: string;

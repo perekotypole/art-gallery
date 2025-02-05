@@ -22,6 +22,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "lightningcss": "^1.29.1",
     "vite": "^6.0.5",
-    "vite-plugin-svgr": "^4.3.0"
+    "vite-plugin-svgr": "^4.3.0",
+    "@art-gallery/shared": "*"
   }
 }
