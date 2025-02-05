@@ -1,4 +1,5 @@
 import { type ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
+import { Button } from "~/libs/components/components.js";
 
 import { ArtworkCard } from "./libs/components/components.js";
 
@@ -20,7 +21,13 @@ const mockingArtworks: ArtworkFindAllResponse = [
 const ArtworksPage: React.FC = () => {
   return (
     <>
-      <h1 className={styles["title"]}>Explore Our Collection</h1>
+      <div className={styles["top"]}>
+        <h1 className={styles["title"]}>Explore Our Collection</h1>
+
+        <div className={styles["button-wrapper"]}>
+          <Button label="Add New Artwork" />
+        </div>
+      </div>
 
       <div className={styles["artworks-list"]}>
         {mockingArtworks.map((artwork) => (
