@@ -6,7 +6,8 @@ import { useArtworkPage } from "./artworks-page.hook.js";
 import styles from "./styles.module.css";
 
 const ArtworksPage: React.FC = () => {
-  const { artworks, onOpenNewArtworkModal } = useArtworkPage();
+  const { artworks, onOpenNewArtworkModal, onOpenArtworkDetailsModal } =
+    useArtworkPage();
 
   return (
     <>
@@ -25,7 +26,13 @@ const ArtworksPage: React.FC = () => {
 
       <div className={styles["artworks-list"]}>
         {artworks.map((artwork) => (
-          <ArtworkCard key={artwork.id} {...artwork} />
+          <ArtworkCard
+            key={artwork.id}
+            {...artwork}
+            onClick={(id) => {
+              onOpenArtworkDetailsModal(id);
+            }}
+          />
         ))}
       </div>
     </>

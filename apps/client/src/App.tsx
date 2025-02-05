@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 </ModalProvider>
               ),
               path: "/",
-              children: [{ path: "/new" }, { path: "/detaild" }],
+              children: [{ path: "/new" }, { path: "/details/:artworkId" }],
             },
           ],
         },

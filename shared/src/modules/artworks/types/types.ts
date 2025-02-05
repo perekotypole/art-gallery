@@ -18,7 +18,9 @@ type ArtworkFindAllRequest = {
   type?: (typeof ARTWORK_TYPES)[number];
 };
 
-type ArtworkFindAllResponse = Array<ArtworkFindResponse>;
+type ArtworkFindAllResponse = Array<
+  Pick<ArtworkFindResponse, "id" | "title" | "artist" | "price" | "type">
+>;
 
 type ArtworkCreateRequest = {
   title: string;

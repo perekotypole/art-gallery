@@ -5,11 +5,25 @@ import {
 
 import styles from "./styles.module.css";
 
-type Props = ArtworkFindAllResponse[number];
+type Props = ArtworkFindAllResponse[number] & {
+  onClick: (id: string) => void;
+};
 
-const ArtworkCard: React.FC<Props> = ({ title, artist, type, price }) => {
+const ArtworkCard: React.FC<Props> = ({
+  id,
+  title,
+  artist,
+  type,
+  price,
+  onClick,
+}) => {
   return (
-    <div className={styles["card"]}>
+    <div
+      className={styles["card"]}
+      onClick={() => {
+        onClick(id);
+      }}
+    >
       <img
         className={styles["card-image"]}
         src="https://placehold.co/600x400"

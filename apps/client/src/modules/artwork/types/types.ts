@@ -1,1 +1,4 @@
-export { type ArtworkFindAllResponse } from "@art-gallery/shared";
+export {
+  type ArtworkFindAllResponse,
+  type ArtworkFindResponse,
+} from "@art-gallery/shared";
