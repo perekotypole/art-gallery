@@ -1,7 +1,7 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
 
-import { Artwork } from "./entities/art-work.entity.js";
+import { ArtworkEntity } from "./entities/entities.js";
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const database = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: true,
-  entities: [Artwork],
+  entities: [ArtworkEntity],
 });
 
 export { database };

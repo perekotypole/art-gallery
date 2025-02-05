@@ -1,4 +1,5 @@
 import { Router, type Request, type Response } from "express";
+import { type Schema as ValidationSchema, ZodError } from "zod";
 
 import { logger, LoggerEntity } from "~/libs/logger/logger.js";
 
@@ -17,12 +18,23 @@ class BaseController {
     this.router = Router();
   }
 
+  private validateData = (schema: ValidationSchema, data: unknown): void => {
+    schema.parse(data);
+  };
+
   protected addRoute(options: ControllerRouteParameters): void {
-    const { handler, method, path } = options;
+    const { handler, method, path, validation } = options;
     const fullPath = this.apiUrl + path;
 
     const routeHandler = async (req: Request, res: Response): Promise<void> => {
       try {
+        if (validation?.body) {
+          this.validateData(validation.body, req.body);
+        }
+        if (validation?.query) {
+          this.validateData(validation.query, req.query);
+        }
+
         const handlerOptions: APIHandlerOptions = {
           body: req.body,
           params: req.params,
@@ -33,15 +45,7 @@ class BaseController {
         const response = await handler(handlerOptions);
         res.status(response.status).json(response.payload);
       } catch (error: unknown) {
-        logger.error(
-          LoggerEntity.API,
-          `Route handler error: ${error as Error}`,
-        );
-        res.status(500).json({
-          error: "Internal server error",
-          message:
-            error instanceof Error ? error.message : "Unknown error occurred",
-        });
+        this.handleError(error, req, res);
       }
     };
 
@@ -58,6 +62,42 @@ class BaseController {
       case "DELETE":
         this.router.delete(fullPath, routeHandler);
         break;
+    }
+  }
+
+  private handleError(error: unknown, req: Request, res: Response): void {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+
+    logger.error(
+      LoggerEntity.API,
+      JSON.stringify({
+        message: errorMessage,
+        method: req.method,
+        path: req.originalUrl,
+        body: req.body as unknown,
+        query: req.query,
+        params: req.params,
+      }),
+    );
+
+    if (error instanceof ZodError) {
+      const errors = error.errors.map((e) => e.message);
+      res.status(400).json({
+        error: "Validation error",
+        message: errors.join(", "),
+        details: error.errors,
+      });
+    } else if (error instanceof Error) {
+      res.status(400).json({
+        error: "Bad request",
+        message: error.message,
+      });
+    } else {
+      res.status(500).json({
+        error: "Internal server error",
+        message: errorMessage,
+      });
     }
   }
 }

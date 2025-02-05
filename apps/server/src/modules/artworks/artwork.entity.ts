@@ -1,3 +1,4 @@
+import { ARTWORK_TYPES } from "@art-gallery/shared";
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -7,24 +8,27 @@ import {
 } from "typeorm";
 
 @Entity()
-class Artwork {
+class ArtworkEntity {
   @PrimaryGeneratedColumn("uuid")
   public id!: string;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar", length: 99 })
   public title!: string;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar", length: 50 })
   public artist!: string;
 
-  @Column({ type: "varchar", length: 100 })
+  @Column({
+    type: "enum",
+    enum: ARTWORK_TYPES,
+  })
   public type!: string;
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   public price!: number;
 
-  @Column({ type: "boolean", default: true })
-  public availability!: boolean;
+  @Column({ type: "boolean", default: false })
+  public availability?: boolean;
 
   @CreateDateColumn({ type: "timestamp" })
   public created_at!: Date;
@@ -33,4 +37,4 @@ class Artwork {
   public updated_at!: Date;
 }
 
-export { Artwork };
+export { ArtworkEntity };
