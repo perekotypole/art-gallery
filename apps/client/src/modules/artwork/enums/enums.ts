@@ -5,4 +5,4 @@ const ArtworkType: Record<(typeof ARTWORK_TYPES)[number], string> = {
   sculpture: "Sculpture",
 };
 
-export { ArtworkType };
+export { ArtworkType, ARTWORK_TYPES };

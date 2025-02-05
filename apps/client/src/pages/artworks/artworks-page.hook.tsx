@@ -1,7 +1,11 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
+import { type Control, type FieldErrors, useForm } from "react-hook-form";
 
-import { type ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
+import {
+  type ArtworkFindAllResponse,
+  type ARTWORK_TYPES,
+} from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
 
 import { ArtworkDetails, CreateArtwork } from "./libs/modals/modals.js";
@@ -16,10 +20,19 @@ const mockArtworks: ArtworkFindAllResponse = [
   },
 ];
 
+type FormData = {
+  search: string;
+  artist: string | null;
+  type: (typeof ARTWORK_TYPES)[number] | null;
+  price: null | "desc" | "asc";
+};
+
 type ReturnData = {
   artworks: ArtworkFindAllResponse;
   onOpenNewArtworkModal: () => void;
   onOpenArtworkDetailsModal: (id: string) => void;
+  control: Control<FormData>;
+  errors: FieldErrors<FormData>;
 };
 
 const useArtworkPage = (): ReturnData => {
@@ -57,10 +70,49 @@ const useArtworkPage = (): ReturnData => {
   }, [artworkDetailsMatch]);
   /* eslint-enable react-hooks/exhaustive-deps */
 
+  const {
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      search: "",
+      artist: null,
+      type: null,
+      price: null,
+    },
+    mode: "onChange",
+  });
+
+  const [debouncedValues, setDebouncedValues] = useState<FormData>({
+    search: "",
+    artist: null,
+    type: null,
+    price: null,
+  });
+
+  const formValues = watch();
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValues(formValues);
+    }, 500);
+
+    return (): void => {
+      clearTimeout(handler);
+    };
+  }, [formValues]);
+
+  useEffect(() => {
+    console.log(debouncedValues);
+  }, [debouncedValues]);
+
   return {
     artworks: mockArtworks,
     onOpenNewArtworkModal,
     onOpenArtworkDetailsModal,
+    control,
+    errors,
   };
 };
 

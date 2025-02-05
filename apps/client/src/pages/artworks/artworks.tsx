@@ -1,4 +1,4 @@
-import { Button } from "~/libs/components/components.js";
+import { Button, Input } from "~/libs/components/components.js";
 
 import { ArtworkCard } from "./libs/components/components.js";
 import { useArtworkPage } from "./artworks-page.hook.js";
@@ -6,8 +6,13 @@ import { useArtworkPage } from "./artworks-page.hook.js";
 import styles from "./styles.module.css";
 
 const ArtworksPage: React.FC = () => {
-  const { artworks, onOpenNewArtworkModal, onOpenArtworkDetailsModal } =
-    useArtworkPage();
+  const {
+    artworks,
+    onOpenNewArtworkModal,
+    onOpenArtworkDetailsModal,
+    control,
+    errors,
+  } = useArtworkPage();
 
   return (
     <>
@@ -20,6 +25,28 @@ const ArtworksPage: React.FC = () => {
             onClick={() => {
               onOpenNewArtworkModal();
             }}
+          />
+        </div>
+      </div>
+
+      <div className={styles["filter-form"]}>
+        <div className={styles["search-wrapper"]}>
+          <Input
+            name="search"
+            control={control}
+            errors={errors}
+            label="Search"
+            placeholder="Search..."
+          />
+        </div>
+
+        <div className={styles["artist-filter-wrapper"]}>
+          <Input
+            name="artist"
+            control={control}
+            errors={errors}
+            label="Artist search"
+            placeholder="Artist search..."
           />
         </div>
       </div>
