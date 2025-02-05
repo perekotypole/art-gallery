@@ -58,6 +58,19 @@ class ArtworkController extends BaseController {
         body: artworkCreateValidationSchema,
       },
     });
+
+    this.addRoute({
+      handler: (options) =>
+        this.delete(
+          options as APIHandlerOptions<{
+            params: {
+              id: string;
+            };
+          }>,
+        ),
+      method: "DELETE",
+      path: "/:id",
+    });
   }
 
   private async find(
@@ -145,6 +158,21 @@ class ArtworkController extends BaseController {
 
     return {
       payload: newArtwork,
+      status: 200,
+    };
+  }
+
+  private async delete(
+    options: APIHandlerOptions<{
+      params: {
+        id: string;
+      };
+    }>,
+  ): Promise<APIHandlerResponse> {
+    const entity = await this.repository.delete(options.params.id);
+
+    return {
+      payload: entity,
       status: 200,
     };
   }
