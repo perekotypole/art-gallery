@@ -197,11 +197,14 @@ class ArtworkController extends BaseController {
       };
     }>,
   ): Promise<APIHandlerResponse> {
-    const entity = await this.repository.delete(options.params.id);
+    const deletedResult = await this.repository.delete(options.params.id);
+    const isDeleted = Boolean(deletedResult.affected);
 
     return {
-      payload: entity,
-      status: 200,
+      payload: {
+        deleted: isDeleted,
+      },
+      status: isDeleted ? 200 : 404,
     };
   }
 

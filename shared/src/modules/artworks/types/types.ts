@@ -1,19 +1,14 @@
 import { type ARTWORK_TYPES } from "../enums/enums.js";
 
-type ArtworkCreateRequest = {
+type ArtworkFindResponse = {
+  id: string;
   title: string;
   artist: string;
-  type: (typeof ARTWORK_TYPES)[number];
+  type: string;
   price: number;
-  availability?: boolean | undefined;
-};
-
-type ArtworkUpdateRequest = {
-  title: string;
-  artist: string;
-  type: (typeof ARTWORK_TYPES)[number];
-  price: number;
-  availability?: boolean | undefined;
+  availability: boolean;
+  created_at: string;
+  updated_at: string;
 };
 
 type ArtworkFindAllRequest = {
@@ -23,8 +18,37 @@ type ArtworkFindAllRequest = {
   type?: (typeof ARTWORK_TYPES)[number];
 };
 
+type ArtworkFindAllResponse = Array<ArtworkFindResponse>;
+
+type ArtworkCreateRequest = {
+  title: string;
+  artist: string;
+  type: (typeof ARTWORK_TYPES)[number];
+  price: number;
+  availability?: boolean | undefined;
+};
+
+type ArtworkCreateResponse = ArtworkFindResponse;
+
+type ArtworkUpdateRequest = {
+  title: string;
+  artist: string;
+  type: (typeof ARTWORK_TYPES)[number];
+  price: number;
+  availability?: boolean | undefined;
+};
+
+type ArtworkUpdateResponse = ArtworkFindResponse | null;
+
+type ArtworkDeleteResponse = { deleted: boolean };
+
 export type {
-  ArtworkCreateRequest,
-  ArtworkUpdateRequest,
+  ArtworkFindResponse,
   ArtworkFindAllRequest,
+  ArtworkFindAllResponse,
+  ArtworkCreateRequest,
+  ArtworkCreateResponse,
+  ArtworkUpdateRequest,
+  ArtworkUpdateResponse,
+  ArtworkDeleteResponse,
 };
