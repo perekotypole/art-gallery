@@ -38,6 +38,7 @@ const ArtworksPage: React.FC = () => {
             errors={errors}
             label="Search"
             placeholder="Search..."
+            isLabelHidden
           />
         </div>
 
@@ -48,6 +49,7 @@ const ArtworksPage: React.FC = () => {
             errors={errors}
             label="Artist search"
             placeholder="Artist search..."
+            isLabelHidden
           />
         </div>
 
@@ -56,6 +58,8 @@ const ArtworksPage: React.FC = () => {
           control={control}
           label="Artwork type"
           placeholder="Artwork type"
+          isClearable
+          isLabelHidden
           options={ARTWORK_TYPES.map((type) => ({
             value: type,
             label: ArtworkType[type],
@@ -67,9 +71,11 @@ const ArtworksPage: React.FC = () => {
           control={control}
           label="Sort by price"
           placeholder="Sort"
+          isClearable
+          isLabelHidden
           options={[
-            { value: 'asc', label: 'Lowest prices' },
-            { value: 'desc', label: 'Highest prices' },
+            { value: "asc", label: "Lowest prices" },
+            { value: "desc", label: "Highest prices" },
           ]}
         />
       </form>

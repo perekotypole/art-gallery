@@ -6,6 +6,7 @@ import {
   type RegisterOptions,
   useController,
 } from "react-hook-form";
+import clsx from "clsx";
 
 import styles from "./styles.module.css";
 
@@ -15,7 +16,8 @@ type Props<T extends FieldValues> = RegisterOptions<T> & {
   label: string;
   name: FieldPath<T>;
   placeholder?: string;
-  type?: "search" | "text";
+  type?: "text" | "number";
+  isLabelHidden?: boolean;
 };
 
 const Input = <T extends FieldValues>({
@@ -25,6 +27,7 @@ const Input = <T extends FieldValues>({
   name,
   placeholder = "",
   type = "text",
+  isLabelHidden = false,
 }: Props<T>): React.ReactElement => {
   const { field } = useController({ control, name });
 
@@ -33,7 +36,9 @@ const Input = <T extends FieldValues>({
 
   return (
     <label className={styles["input-label"]}>
-      <span className="visually-hidden">{label}</span>
+      <span className={clsx(isLabelHidden && "visually-hidden")}>
+        {label} :
+      </span>
 
       <div className={styles["input-container"]}>
         <input

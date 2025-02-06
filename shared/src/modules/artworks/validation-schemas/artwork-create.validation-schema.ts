@@ -22,7 +22,7 @@ const artworkCreate: z.ZodType<ArtworkCreateRequest> = z.object({
     }),
   }),
 
-  price: z.number().positive("Price must be greater than 0").finite(),
+  price: z.coerce.number().positive("Price must be greater than 0").finite(),
 
   availability: z.boolean().optional(),
 });

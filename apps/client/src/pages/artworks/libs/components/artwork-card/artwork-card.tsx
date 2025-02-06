@@ -26,7 +26,7 @@ const ArtworkCard: React.FC<Props> = ({
     >
       <img
         className={styles["card-image"]}
-        src="https://picsum.photos/200/300?grayscale"
+        src="https://picsum.photos/400/600?grayscale"
         alt={`${title}: ${ArtworkType[type]} by ${artist}`}
         loading="lazy"
       />

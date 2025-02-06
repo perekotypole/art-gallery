@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useCallback, useMemo } from "react";
 import {
   type Control,
@@ -20,6 +21,8 @@ type Properties<T extends FieldValues, TOptionValue> = {
   name: FieldPath<T>;
   options: SelectOption<TOptionValue>[];
   placeholder?: string;
+  isLabelHidden?: boolean;
+  isClearable?: boolean;
 };
 
 const Select = <TFieldValues extends FieldValues, TOptionValue>({
@@ -28,6 +31,8 @@ const Select = <TFieldValues extends FieldValues, TOptionValue>({
   name,
   options,
   placeholder,
+  isLabelHidden = false,
+  isClearable = false,
 }: Properties<TFieldValues, TOptionValue>): React.ReactElement => {
   const { field } = useController({
     control,
@@ -51,11 +56,13 @@ const Select = <TFieldValues extends FieldValues, TOptionValue>({
 
   return (
     <label>
-      <span className="visually-hidden">{label}</span>
+      <span className={clsx(isLabelHidden && "visually-hidden")}>
+        {label} :
+      </span>
 
       <ReactSelect
         name={name}
-        isClearable
+        isClearable={isClearable}
         onChange={handleChange}
         options={options as PathValue<TFieldValues, Path<TFieldValues>>}
         placeholder={placeholder}

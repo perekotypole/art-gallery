@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { type Control, type FieldErrors, useForm } from "react-hook-form";
 
 import {
-  ARTWORK_TYPES,
+  type ARTWORK_TYPES,
   type ArtworkFindAllResponse,
 } from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
@@ -83,8 +83,6 @@ const useArtworkPage = (): ReturnData => {
     },
     mode: "onChange",
   });
-  const formValues = watch();
-  console.log(formValues);
 
   return {
     artworks: mockArtworks,

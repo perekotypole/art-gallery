@@ -31,3 +31,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+.delete-button-wrapper {
+  width: fit-content;
+  margin-top: 20px;
+  margin-bottom: -20px;
+  margin-right: auto;
+}

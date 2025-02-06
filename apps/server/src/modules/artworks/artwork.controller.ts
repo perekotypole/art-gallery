@@ -145,7 +145,7 @@ class ArtworkController extends BaseController {
     if (artist) {
       findOptions.where = {
         ...(findOptions.where as FindOptionsWhere<ArtworkEntity>),
-        artist,
+        artist: Like(`%${artist}%`),
       };
     }
 

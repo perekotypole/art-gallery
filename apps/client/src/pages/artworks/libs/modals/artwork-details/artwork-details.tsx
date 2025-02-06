@@ -2,6 +2,7 @@ import { ArtworkType } from "~/modules/artwork/artwork.js";
 
 import { useArtworkDetails } from "./artwork-details.hook.js";
 import styles from "./styles.module.css";
+import { Button } from "~/libs/components/components.js";
 
 const ArtworkDetails: React.FC = () => {
   const {
@@ -21,7 +22,7 @@ const ArtworkDetails: React.FC = () => {
     <div className={styles["details"]}>
       <img
         className={styles["details-image"]}
-        src="https://picsum.photos/200/300?grayscale"
+        src="https://picsum.photos/400/600?grayscale"
         alt={`${title}: ${ArtworkType[type]} by ${artist}`}
         loading="lazy"
       />
@@ -52,6 +53,10 @@ const ArtworkDetails: React.FC = () => {
             <b>Updated:</b> {updated_at}
           </p>
         </div>
+      </div>
+
+      <div className={styles["delete-button-wrapper"]}>
+        <Button label="Delete" />
       </div>
     </div>
   );
