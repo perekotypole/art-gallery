@@ -22,7 +22,7 @@ const ArtworkDetails: React.FC = () => {
     <div className={styles["details"]}>
       <img
         className={styles["details-image"]}
-        src="https://picsum.photos/400/600?grayscale"
+        src="https://picsum.photos/400/600"
         alt={`${title}: ${ArtworkType[type]} by ${artist}`}
         loading="lazy"
       />

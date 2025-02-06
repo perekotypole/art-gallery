@@ -7,3 +7,5 @@ export { artworkApi };
 export type * from "./types/types.js";
 export * from "./enums/enums.js";
 export * from "./validations/validations.js";
+
+export { reducer, actions } from "./slices/artwork.js";
