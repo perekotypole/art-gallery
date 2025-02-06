@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import type { ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
+
 import { loadAll } from "./actions.js";
-import type { ArtworkFindAllResponse } from "../types/types.js";
 
 type State = {
   artworks: ArtworkFindAllResponse;

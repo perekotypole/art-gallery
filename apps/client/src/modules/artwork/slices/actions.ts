@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { type AsyncThunkConfig } from "~/libs/types/types.js";
+import { type AsyncThunkConfig } from "~/libs/modules/store/store.js";
 import {
+  artworkApi,
   type ArtworkFindAllRequest,
   type ArtworkFindAllResponse,
 } from "~/modules/artwork/artwork.js";
@@ -12,9 +13,7 @@ const loadAll = createAsyncThunk<
   ArtworkFindAllResponse,
   ArtworkFindAllRequest,
   AsyncThunkConfig
->(`${sliceName}/load-all`, async (query, { extra }) => {
-  const { artworkApi } = extra;
-
+>(`${sliceName}/load-all`, async (query) => {
   return await artworkApi.getAll(query);
 });
 
