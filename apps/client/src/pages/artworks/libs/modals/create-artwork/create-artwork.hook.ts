@@ -25,7 +25,6 @@ const useCreateArtwork = (): ReturnData => {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<FormData>({
     resolver: zodResolver(artworkCreateValidationSchema),
     defaultValues: {

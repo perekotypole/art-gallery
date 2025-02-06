@@ -33,7 +33,7 @@ const ArtworksPage: React.FC = () => {
       <form className={styles["filter-form"]}>
         <div className={styles["search-wrapper"]}>
           <Input
-            name="search"
+            name="title"
             control={control}
             errors={errors}
             label="Search"

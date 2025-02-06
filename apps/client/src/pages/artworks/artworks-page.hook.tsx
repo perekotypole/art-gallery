@@ -3,7 +3,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { type Control, type FieldErrors, useForm } from "react-hook-form";
 
 import {
-  type ARTWORK_TYPES,
+  type ArtworkFindAllRequest,
   type ArtworkFindAllResponse,
 } from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
@@ -20,12 +20,7 @@ const mockArtworks: ArtworkFindAllResponse = [
   },
 ];
 
-type FormData = {
-  search: string;
-  artist: string;
-  type: (typeof ARTWORK_TYPES)[number] | null;
-  price: null | "desc" | "asc";
-};
+type FormData = ArtworkFindAllRequest;
 
 type ReturnData = {
   artworks: ArtworkFindAllResponse;
@@ -72,14 +67,11 @@ const useArtworkPage = (): ReturnData => {
 
   const {
     control,
-    watch,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      search: "",
+      title: "",
       artist: "",
-      type: null,
-      price: null,
     },
     mode: "onChange",
   });
