@@ -19,7 +19,10 @@ type ArtworkFindAllRequest = {
 };
 
 type ArtworkFindAllResponse = Array<
-  Pick<ArtworkFindResponse, "id" | "title" | "artist" | "price" | "type">
+  Pick<
+    ArtworkFindResponse,
+    "id" | "title" | "artist" | "price" | "type" | "availability"
+  >
 >;
 
 type ArtworkCreateRequest = {

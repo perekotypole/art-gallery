@@ -4,6 +4,7 @@ import {
 } from "~/modules/artwork/artwork.js";
 
 import styles from "./styles.module.css";
+import clsx from "clsx";
 
 type Props = ArtworkFindAllResponse[number] & {
   onClick: (id: string) => void;
@@ -15,11 +16,16 @@ const ArtworkCard: React.FC<Props> = ({
   artist,
   type,
   price,
+  availability,
   onClick,
 }) => {
   return (
     <div
-      className={styles["card"]}
+      className={clsx(
+        styles["card"],
+        availability === true && styles["card-sale"],
+        availability === false && styles["card-exhibition"],
+      )}
       onClick={() => {
         onClick(id);
       }}

@@ -4,6 +4,14 @@
   padding: 15px;
 }
 
+.card-sale {
+  box-shadow: 0px 0px 10px -5px rgba(0, 17, 255, 0.7);
+}
+
+.card-exhibition {
+  box-shadow: 0px 0px 10px -5px rgba(255, 0, 0, 0.7);
+}
+
 .card-image {
   border-radius: 10px;
   width: 100%;

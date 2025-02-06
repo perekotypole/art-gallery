@@ -126,16 +126,7 @@ class ArtworkController extends BaseController {
     const { price, artist, type, title } = options.query;
 
     const findOptions: FindManyOptions<ArtworkEntity> = {
-      select: [
-        "id",
-        "title",
-        "artist",
-        "price",
-        "type",
-        "created_at",
-        "updated_at",
-        "availability",
-      ],
+      select: ["id", "title", "artist", "price", "type", "availability"],
     };
 
     if (price) {
@@ -180,7 +171,7 @@ class ArtworkController extends BaseController {
 
     const entity = this.repository.create({
       ...body,
-      availability: body.availability ?? false,
+      availability: body.availability ?? null,
     });
     const newArtwork = await this.repository.save(entity);
 
@@ -229,7 +220,7 @@ class ArtworkController extends BaseController {
 
     const result = await this.repository.save(
       Object.assign(new ArtworkEntity(), entity, options.body, {
-        availability: options.body.availability ?? entity.availability ?? false,
+        availability: options.body.availability ?? null,
       }),
     );
 
