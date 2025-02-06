@@ -3,6 +3,8 @@ import { BaseHTTPApi } from "~/libs/modules/api/api.js";
 import {
   type ArtworkFindAllRequest,
   type ArtworkFindAllResponse,
+  type ArtworkCreateRequest,
+  type ArtworkCreateResponse,
 } from "./types/types.js";
 
 class ArtworkApi extends BaseHTTPApi {
@@ -19,6 +21,17 @@ class ArtworkApi extends BaseHTTPApi {
     });
 
     return await response.json<ArtworkFindAllResponse>();
+  }
+
+  public async create(
+    payload: ArtworkCreateRequest,
+  ): Promise<ArtworkCreateResponse> {
+    const response = await this.load(this.getFullEndpoint("/", {}), {
+      method: "POST",
+      payload: JSON.stringify(payload),
+    });
+
+    return await response.json<ArtworkCreateResponse>();
   }
 }
 

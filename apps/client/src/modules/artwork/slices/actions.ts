@@ -5,6 +5,8 @@ import {
   artworkApi,
   type ArtworkFindAllRequest,
   type ArtworkFindAllResponse,
+  type ArtworkCreateRequest,
+  type ArtworkCreateResponse,
 } from "~/modules/artwork/artwork.js";
 
 import { name as sliceName } from "./artwork.slice.js";
@@ -17,4 +19,12 @@ const loadAll = createAsyncThunk<
   return await artworkApi.getAll(query);
 });
 
-export { loadAll };
+const create = createAsyncThunk<
+  ArtworkCreateResponse,
+  ArtworkCreateRequest,
+  AsyncThunkConfig
+>(`${sliceName}/create`, async (payload) => {
+  return await artworkApi.create(payload);
+});
+
+export { loadAll, create };

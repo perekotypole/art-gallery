@@ -7,18 +7,9 @@ import {
   type ArtworkFindAllResponse,
 } from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
+import { useAppSelector } from "~/libs/hooks/use-app-selector.hook.js";
 
 import { ArtworkDetails, CreateArtwork } from "./libs/modals/modals.js";
-
-const mockArtworks: ArtworkFindAllResponse = [
-  {
-    id: "7be5ce0e-4879-48fd-a2c2-be2e49603609",
-    title: "First artwork",
-    artist: "First artist",
-    type: "painting",
-    price: 100000,
-  },
-];
 
 type FormData = ArtworkFindAllRequest;
 
@@ -31,6 +22,8 @@ type ReturnData = {
 };
 
 const useArtworkPage = (): ReturnData => {
+  const { artworks } = useAppSelector(({ artwork }) => artwork);
+
   const { onOpenModal } = useModal();
 
   const navigate = useNavigate();
@@ -77,7 +70,7 @@ const useArtworkPage = (): ReturnData => {
   });
 
   return {
-    artworks: mockArtworks,
+    artworks,
     onOpenNewArtworkModal,
     onOpenArtworkDetailsModal,
     control,

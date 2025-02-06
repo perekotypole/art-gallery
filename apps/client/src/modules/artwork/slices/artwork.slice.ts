@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import type { ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
 
-import { loadAll } from "./actions.js";
+import { loadAll, create } from "./actions.js";
 
 type State = {
   artworks: ArtworkFindAllResponse;
@@ -19,6 +19,10 @@ const { actions, name, reducer } = createSlice({
     });
     builder.addCase(loadAll.rejected, (state) => {
       state.artworks = [];
+    });
+
+    builder.addCase(create.fulfilled, (state, action) => {
+      state.artworks = [action.payload, ...state.artworks];
     });
   },
   initialState,
