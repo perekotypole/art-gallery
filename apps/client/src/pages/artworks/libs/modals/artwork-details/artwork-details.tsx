@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Button } from "~/libs/components/components.js";
 
 const ArtworkDetails: React.FC = () => {
-  const { artwork } = useArtworkDetails();
+  const { artwork, handleDelete } = useArtworkDetails();
 
   if (!artwork) {
     return <></>;
@@ -49,7 +49,7 @@ const ArtworkDetails: React.FC = () => {
       </div>
 
       <div className={styles["delete-button-wrapper"]}>
-        <Button label="Delete" />
+        <Button label="Delete" onClick={handleDelete} />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import {
   type ArtworkCreateRequest,
   type ArtworkCreateResponse,
   type ArtworkFindResponse,
+  type ArtworkDeleteResponse,
 } from "~/modules/artwork/artwork.js";
 
 import { name as sliceName } from "./artwork.slice.js";
@@ -36,4 +37,12 @@ const getById = createAsyncThunk<
   return await artworkApi.getById(payload);
 });
 
-export { loadAll, create, getById };
+const deleteById = createAsyncThunk<
+  ArtworkDeleteResponse,
+  { id: string },
+  AsyncThunkConfig
+>(`${sliceName}/delete`, async (payload) => {
+  return await artworkApi.delete(payload);
+});
+
+export { loadAll, create, getById, deleteById };

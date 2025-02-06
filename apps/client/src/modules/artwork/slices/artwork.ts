@@ -1,4 +1,4 @@
-import { loadAll, create, getById } from "./actions.js";
+import { loadAll, create, getById, deleteById } from "./actions.js";
 import { actions } from "./artwork.slice.js";
 
 const allActions = {
@@ -6,6 +6,7 @@ const allActions = {
   loadAll,
   create,
   getById,
+  deleteById,
 };
 
 export { allActions as actions };

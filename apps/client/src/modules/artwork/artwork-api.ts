@@ -6,6 +6,7 @@ import {
   type ArtworkCreateRequest,
   type ArtworkCreateResponse,
   type ArtworkFindResponse,
+  type ArtworkDeleteResponse,
 } from "./types/types.js";
 
 class ArtworkApi extends BaseHTTPApi {
@@ -44,6 +45,17 @@ class ArtworkApi extends BaseHTTPApi {
     );
 
     return await response.json<ArtworkFindResponse>();
+  }
+
+  public async delete(payload: { id: string }): Promise<ArtworkDeleteResponse> {
+    const response = await this.load(
+      this.getFullEndpoint("/:id", { id: payload.id }),
+      {
+        method: "DELETE",
+      },
+    );
+
+    return await response.json<ArtworkDeleteResponse>();
   }
 }
 

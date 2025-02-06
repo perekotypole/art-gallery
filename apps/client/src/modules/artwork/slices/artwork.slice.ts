@@ -5,7 +5,7 @@ import type {
   ArtworkFindResponse,
 } from "~/modules/artwork/artwork.js";
 
-import { loadAll, create, getById } from "./actions.js";
+import { loadAll, create, getById, deleteById } from "./actions.js";
 
 type State = {
   artworks: ArtworkFindAllResponse;
@@ -34,6 +34,14 @@ const { actions, name, reducer } = createSlice({
       state.artwork = action.payload;
     });
     builder.addCase(getById.pending, (state) => {
+      state.artwork = null;
+    });
+
+    builder.addCase(deleteById.fulfilled, (state) => {
+      const artworkId = state.artwork?.id;
+      state.artworks = state.artworks.filter(
+        (artwork) => artwork.id !== artworkId,
+      );
       state.artwork = null;
     });
   },
