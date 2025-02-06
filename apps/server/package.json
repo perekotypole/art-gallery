@@ -9,15 +9,17 @@
     "typeorm": "typeorm-ts-node-esm"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "@art-gallery/shared": "*",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pg": "^8.13.1",
-    "typeorm": "^0.3.20",
-    "@art-gallery/shared": "*"
+    "typeorm": "^0.3.20"
   }
 }

@@ -1,31 +1,23 @@
 import { useCallback, useEffect } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
-import { type Control, type FieldErrors, useForm } from "react-hook-form";
+import {
+  type Control,
+  type FieldErrors,
+  useForm,
+  useWatch,
+} from "react-hook-form";
 
 import {
-  type ARTWORK_TYPES,
+  type ArtworkFindAllRequest,
   type ArtworkFindAllResponse,
+  actions as artworkActions,
 } from "~/modules/artwork/artwork.js";
 import { useModal } from "~/libs/contexts/modal/modal.js";
+import { useAppSelector, useAppDispatch } from "~/libs/hooks/hooks.js";
 
 import { ArtworkDetails, CreateArtwork } from "./libs/modals/modals.js";
 
-const mockArtworks: ArtworkFindAllResponse = [
-  {
-    id: "7be5ce0e-4879-48fd-a2c2-be2e49603609",
-    title: "First artwork",
-    artist: "First artist",
-    type: "painting",
-    price: 100000,
-  },
-];
-
-type FormData = {
-  search: string;
-  artist: string;
-  type: (typeof ARTWORK_TYPES)[number] | null;
-  price: null | "desc" | "asc";
-};
+type FormData = ArtworkFindAllRequest;
 
 type ReturnData = {
   artworks: ArtworkFindAllResponse;
@@ -36,8 +28,27 @@ type ReturnData = {
 };
 
 const useArtworkPage = (): ReturnData => {
-  const { onOpenModal } = useModal();
+  const dispatch = useAppDispatch();
+  const { artworks } = useAppSelector(({ artwork }) => artwork);
 
+  const {
+    control,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      title: "",
+      artist: "",
+    },
+    mode: "onChange",
+  });
+
+  const params = useWatch({ control });
+
+  useEffect(() => {
+    void dispatch(artworkActions.loadAll(params));
+  }, [dispatch, params]);
+
+  const { onOpenModal } = useModal();
   const navigate = useNavigate();
 
   const newArtworkMatch = useMatch("/new");
@@ -70,22 +81,8 @@ const useArtworkPage = (): ReturnData => {
   }, [artworkDetailsMatch]);
   /* eslint-enable react-hooks/exhaustive-deps */
 
-  const {
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormData>({
-    defaultValues: {
-      search: "",
-      artist: "",
-      type: null,
-      price: null,
-    },
-    mode: "onChange",
-  });
-
   return {
-    artworks: mockArtworks,
+    artworks,
     onOpenNewArtworkModal,
     onOpenArtworkDetailsModal,
     control,

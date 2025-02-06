@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import { database } from "~/libs/database/database.js";
 import { logger, LoggerEntity } from "~/libs/logger/logger.js";
@@ -20,8 +21,11 @@ try {
 }
 
 const app = express();
-const port = process.env.PORT;
 
+const port = process.env.PORT;
+const allowedUrl = process.env.ALLOWED_URL;
+
+app.use(cors({ origin: allowedUrl }));
 app.use(express.json());
 
 app.get("/", (_req, res) => {

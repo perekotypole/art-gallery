@@ -10,7 +10,10 @@ import {
 import {
   ARTWORK_TYPES,
   artworkCreateValidationSchema,
+  actions as artworkActions,
 } from "~/modules/artwork/artwork.js";
+import { useAppDispatch } from "~/libs/hooks/use-app-dispatch.hook.js";
+import { useModal } from "~/libs/contexts/modal/modal.hook.js";
 
 type FormData = z.infer<typeof artworkCreateValidationSchema>;
 
@@ -21,11 +24,13 @@ type ReturnData = {
 };
 
 const useCreateArtwork = (): ReturnData => {
+  const dispatch = useAppDispatch();
+  const { onCloseModal } = useModal();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<FormData>({
     resolver: zodResolver(artworkCreateValidationSchema),
     defaultValues: {
@@ -37,7 +42,8 @@ const useCreateArtwork = (): ReturnData => {
   });
 
   const onSubmit: SubmitHandler<FormData> = (data): void => {
-    console.log(data);
+    void dispatch(artworkActions.create(data));
+    onCloseModal();
   };
 
   const handleFormSubmit = (e: React.BaseSyntheticEvent): void => {
