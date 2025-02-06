@@ -5,6 +5,7 @@ import {
   type ArtworkFindAllResponse,
   type ArtworkCreateRequest,
   type ArtworkCreateResponse,
+  type ArtworkFindResponse,
 } from "./types/types.js";
 
 class ArtworkApi extends BaseHTTPApi {
@@ -32,6 +33,17 @@ class ArtworkApi extends BaseHTTPApi {
     });
 
     return await response.json<ArtworkCreateResponse>();
+  }
+
+  public async getById(payload: { id: string }): Promise<ArtworkFindResponse> {
+    const response = await this.load(
+      this.getFullEndpoint("/:id", { id: payload.id }),
+      {
+        method: "GET",
+      },
+    );
+
+    return await response.json<ArtworkFindResponse>();
   }
 }
 

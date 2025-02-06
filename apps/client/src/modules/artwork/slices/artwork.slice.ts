@@ -1,15 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import type { ArtworkFindAllResponse } from "~/modules/artwork/artwork.js";
+import type {
+  ArtworkFindAllResponse,
+  ArtworkFindResponse,
+} from "~/modules/artwork/artwork.js";
 
-import { loadAll, create } from "./actions.js";
+import { loadAll, create, getById } from "./actions.js";
 
 type State = {
   artworks: ArtworkFindAllResponse;
+  artwork: ArtworkFindResponse | null;
 };
 
 const initialState: State = {
   artworks: [],
+  artwork: null,
 };
 
 const { actions, name, reducer } = createSlice({
@@ -23,6 +28,13 @@ const { actions, name, reducer } = createSlice({
 
     builder.addCase(create.fulfilled, (state, action) => {
       state.artworks = [action.payload, ...state.artworks];
+    });
+
+    builder.addCase(getById.fulfilled, (state, action) => {
+      state.artwork = action.payload;
+    });
+    builder.addCase(getById.pending, (state) => {
+      state.artwork = null;
     });
   },
   initialState,

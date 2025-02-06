@@ -46,7 +46,7 @@ const useArtworkPage = (): ReturnData => {
 
   useEffect(() => {
     void dispatch(artworkActions.loadAll(params));
-  }, [params]);
+  }, [dispatch, params]);
 
   const { onOpenModal } = useModal();
   const navigate = useNavigate();
