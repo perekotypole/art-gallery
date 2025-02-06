@@ -45,6 +45,18 @@ const CreateArtwork: React.FC = () => {
         placeholder="Price"
       />
 
+      <Select
+        name="availability"
+        control={control}
+        label="Availability"
+        placeholder="Not available"
+        isClearable
+        options={[
+          { value: true, label: "For sale" },
+          { value: true, label: "For exhibition" },
+        ]}
+      />
+
       <Button label="Save" type="submit" />
     </form>
   );

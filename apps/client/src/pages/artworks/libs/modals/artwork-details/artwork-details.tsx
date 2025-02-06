@@ -34,7 +34,14 @@ const ArtworkDetails: React.FC = () => {
             <b>Artist:</b> {artwork.artist}
           </p>
           <p>
-            <b>Availability:</b> {artwork.availability.toString()}
+            {/* { value: true, label: 'For sale' },
+          { value: true, label: 'For exhibition' }, */}
+            <b>Availability:</b>{" "}
+            {artwork.availability === true
+              ? "For sale"
+              : artwork.availability === false
+                ? "For exhibition"
+                : "Not available"}
           </p>
           <p>
             <b>ID:</b> {artwork.id}

@@ -27,8 +27,8 @@ class ArtworkEntity {
   @Column({ type: "decimal", precision: 10, scale: 2 })
   public price!: number;
 
-  @Column({ type: "boolean", default: false })
-  public availability?: boolean;
+  @Column({ type: "boolean", nullable: true })
+  public availability?: boolean | null;
 
   @CreateDateColumn({ type: "timestamp" })
   public created_at!: Date;
