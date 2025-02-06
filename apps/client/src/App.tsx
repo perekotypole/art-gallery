@@ -1,40 +1,30 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { RootLayout } from "~/libs/layouts/layouts.js";
+import { ModalProvider } from "~/libs/contexts/modal/modal.js";
+import { RouterProvider } from "~/libs/components/components.js";
 
-const COUNT_DEFAULT = 0;
+import { ArtworksPage } from "~/pages/artworks/artworks.js";
 
 const App: React.FC = () => {
-  const [count, setCount] = useState(COUNT_DEFAULT);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          onClick={() => {
-            setCount((count): number => count + 1);
-          }}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <RouterProvider
+      routes={[
+        {
+          children: [
+            {
+              element: (
+                <ModalProvider>
+                  <RootLayout>
+                    <ArtworksPage />
+                  </RootLayout>
+                </ModalProvider>
+              ),
+              path: "/",
+              children: [{ path: "/new" }, { path: "/details/:artworkId" }],
+            },
+          ],
+        },
+      ]}
+    />
   );
 };
 
