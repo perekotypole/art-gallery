@@ -6,9 +6,9 @@
     "lint": "eslint ./src",
     "start:dev": "nodemon --exec tsx src/index.ts",
     "start": "node ./src/index.js",
-    "migrate": "npm run typeorm -- migration:run",
     "typeorm": "npx typeorm-ts-node-esm",
     "migration": "npm run typeorm -- migration:run -d src/database/database.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/database/database.ts",
     "migration:create": "npm run typeorm -- migration:create",
     "migration:generate": "npm run typeorm -- migration:generate -d src/database/database.ts"
   },

@@ -9,7 +9,7 @@ const database = new DataSource({
   password: "postgres",
   database: "artgallery",
   entities: ["src/database/entities/**/*.ts"],
-  migrations: ["src/database/migrations/**/*.ts"],
+  migrations: ["src/database/migrations/**/*.ts", "src/database/seeds/**/*.ts"],
   synchronize: false,
 });
 
