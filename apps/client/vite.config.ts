@@ -6,9 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
   const {
-    VITE_APP_API_ORIGIN_URL,
-    VITE_APP_DEVELOPMENT_PORT,
-    VITE_APP_PROXY_SERVER_URL,
+    VITE_APP_PORT
   } = loadEnv(mode, process.cwd());
 
   return defineConfig({
@@ -40,7 +38,10 @@ const config = ({ mode }: ConfigEnv): ReturnType<typeof defineConfig> => {
       ],
     },
     server: {
-      port: Number(VITE_APP_DEVELOPMENT_PORT),
+      port: Number(VITE_APP_PORT),
+    },
+    preview: {
+      port: Number(VITE_APP_PORT),
     },
   });
 };

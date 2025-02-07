@@ -4,6 +4,7 @@
   "exclude": ["node_modules", "build"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "outDir": "./build",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
