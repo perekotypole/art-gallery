@@ -6,8 +6,6 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    },
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    }
   }
 }
