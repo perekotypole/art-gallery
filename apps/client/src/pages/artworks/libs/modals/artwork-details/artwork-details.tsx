@@ -10,6 +10,7 @@ const ArtworkDetails: React.FC = () => {
   if (!artwork) {
     return <></>;
   }
+  const isNotAvailable = typeof artwork.availability !== "boolean";
 
   return (
     <div className={styles["details"]}>
@@ -34,14 +35,12 @@ const ArtworkDetails: React.FC = () => {
             <b>Artist:</b> {artwork.artist}
           </p>
           <p>
-            {/* { value: true, label: 'For sale' },
-          { value: true, label: 'For exhibition' }, */}
             <b>Availability:</b>{" "}
-            {artwork.availability === true
-              ? "For sale"
-              : artwork.availability === false
-                ? "For exhibition"
-                : "Not available"}
+            {isNotAvailable
+              ? "Not available"
+              : artwork.availability
+                ? "For sale"
+                : "For exhibition"}
           </p>
           <p>
             <b>ID:</b> {artwork.id}

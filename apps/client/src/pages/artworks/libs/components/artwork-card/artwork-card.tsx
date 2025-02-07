@@ -19,12 +19,14 @@ const ArtworkCard: React.FC<Props> = ({
   availability,
   onClick,
 }) => {
+  const isNotAvailable = typeof availability !== "boolean";
+
   return (
     <div
       className={clsx(
         styles["card"],
-        availability === true && styles["card-sale"],
-        availability === false && styles["card-exhibition"],
+        !isNotAvailable && availability && styles["card-sale"],
+        !isNotAvailable && !availability && styles["card-exhibition"],
       )}
       onClick={() => {
         onClick(id);
