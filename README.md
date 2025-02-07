@@ -55,12 +55,12 @@ Install the project
 
 5. Run:
 
-  -  Run server in dev mode: `npm run start:server`
-  -  Run client in dev mode: `npm run start:client`
+  -  Server: `npm run start:server`
+  -  Client: `npm run start:client`
 
 ##### *Dev mode:*
-  -  Run server in dev mode: `npm run dev:server`
-  -  Run client in dev mode: `npm run dev:client`
+  -  Server in dev mode: `npm run dev:server`
+  -  Client in dev mode: `npm run dev:client`
 
 
 ## Screenshots
