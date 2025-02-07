@@ -1,7 +1,7 @@
 import baseConfig from "../../eslint.config.js";
 
 const ignoresConfig = {
-  ignores: ["build"],
+  ignores: ["build", "src/database/**"],
 };
 
 const config = [...baseConfig, ignoresConfig];

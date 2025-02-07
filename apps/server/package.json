@@ -6,7 +6,11 @@
     "lint": "eslint ./src",
     "start:dev": "nodemon --exec tsx src/index.ts",
     "start": "node ./src/index.js",
-    "typeorm": "typeorm-ts-node-esm"
+    "typeorm": "npx typeorm-ts-node-esm",
+    "migration": "npm run typeorm -- migration:run -d src/database/database.ts",
+    "migration:revert": "npm run typeorm -- migration:revert -d src/database/database.ts",
+    "migration:create": "npm run typeorm -- migration:create",
+    "migration:generate": "npm run typeorm -- migration:generate -d src/database/database.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -19,7 +23,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "pg": "^8.13.1",
-    "typeorm": "^0.3.20"
+    "pg": "^8.13.1"
+  },
+  "typeorm": {
+    "dataSourceConfigFile": "src/database/database.ts"
   }
 }
