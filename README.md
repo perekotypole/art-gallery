@@ -33,30 +33,35 @@ Install the project
 
 1. Run instalation:
 
-```bash
-  npm i
-```
+  ```bash
+    npm i
+  ```
 
 2. Build shared module:
 
-```bash
-  npm run build:shared
-```
+  ```bash
+    npm run build:shared
+  ```
 
 3. Create database `artgallery` and do migrations:
 
-```bash
-  npm run migrate
-```
+  ```bash
+    npm run migrate
+  ```
 
-_If you need to revert migrations:_ `npm run migrate:revert`
+  *If you need to revert migrations:* `npm run migrate:revert`
 
 4. In forders `apps/client` and `apps/server` make a copies of inner `.env.example` files, rename them to `.env` and leave them or rewrite to your data.
 
 5. Run:
 
-- Run server in dev mode: `npm run dev:server`
-- Run client in dev mode: `npm run dev:client`
+  -  Run server in dev mode: `npm run start:server`
+  -  Run client in dev mode: `npm run start:client`
+
+##### *Dev mode:*
+  -  Run server in dev mode: `npm run dev:server`
+  -  Run client in dev mode: `npm run dev:client`
+
 
 ## Screenshots
 
