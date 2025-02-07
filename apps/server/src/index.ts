@@ -22,8 +22,8 @@ try {
 
 const app = express();
 
-const port = process.env.PORT;
-const allowedUrl = process.env.ALLOWED_URL;
+const port = process.env["PORT"] ?? "8000";
+const allowedUrl = process.env["ALLOWED_URL"] ?? "http://localhost";
 
 app.use(cors({ origin: allowedUrl }));
 app.use(express.json());

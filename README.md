@@ -60,15 +60,15 @@ _If you need to revert migrations:_ `npm run migrate:revert`
 
 ## Screenshots
 
-### Route: `/`
+#### Route: `/`
 
 ![Home Page](./demo/main-page.png)
 
-### Route: `/new`
+#### Route: `/new`
 
 ![Create new artwork modal](./demo/add-new.png)
 
-### Route: `/details/{artworkId}`
+#### Route: `/details/{artworkId}`
 
 ![Artwork detail](./demo/details.png)
 

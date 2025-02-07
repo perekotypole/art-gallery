@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "start:dev": "nodemon --exec tsx src/index.ts",
-    "start": "node ./src/index.js",
+    "start": "tsx ./src/index.ts",
     "typeorm": "npx typeorm-ts-node-esm",
     "migration": "npm run typeorm -- migration:run -d src/database/database.ts",
     "migration:revert": "npm run typeorm -- migration:revert -d src/database/database.ts",
@@ -16,7 +16,8 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "nodemon": "^3.1.9",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10"
   },
   "dependencies": {
     "@art-gallery/shared": "*",
